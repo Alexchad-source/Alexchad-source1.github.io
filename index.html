@@ -65,6 +65,14 @@
             color: #fff;
             border-radius: 5px;
         }
+        .list {
+            text-align: left;
+            margin-top: 20px;
+        }
+        h2, h3 {
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -85,24 +93,53 @@
         
         <div class="box">
             <h3>Loadstring</h3>
-            <input type="text" value='loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Alexchad-source/Alexchad-Hub/refs/heads/main/loader.lua"))()' id="loadstringBox" readonly>
+            <input type="text" value='loadstring(game:HttpGet("https://alexchad-source.github.io/loader.lua"))()' id="loadstringBox" readonly>
             <button class="copy-btn" onclick="copyLoadstring()">Copy</button>
         </div>
     </div>
 
     <div id="games" class="tab" style="display:none;">
-        <h2>Games</h2>
-        <p>Coming soon: Roblox game scripts list...</p>
+        <h2>Supported Games</h2>
+        <div class="list">
+            <ul>
+                <li>✅ Build an Island</li>
+                <li>✅ Untitled Drilling Game</li>
+                <li>✅ Luckyblock Battlegrounds</li>
+                <li>⚠️ Be Crushed by a Speeding Wall (Partially supported)</li>
+                <li>✅ Smoothie Factory Tycoon</li>
+            </ul>
+        </div>
     </div>
 
     <div id="executors" class="tab" style="display:none;">
-        <h2>Executors</h2>
-        <p>Coming soon: Executor recommendations & info...</p>
+        <h2>Recommended Executors</h2>
+        <div class="list">
+            <h3>🖥️ PC (Windows)</h3>
+            <h4>🔒 Best Paid</h4>
+            <ul>
+                <li>✅ Synapse X (Legacy)</li>
+                <li>✅ Zenith</li>
+                <li>✅ AWP.GG</li>
+            </ul>
+            <h4>💸 Best Free</h4>
+            <ul>
+                <li>✅ Volcano</li>
+                <li>✅ Swift</li>
+                <li>✅ Velocity</li>
+                <li>✅ Xeno</li>
+                <li>✅ Visual</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h3>Executor Loadstring</h3>
+            <input type="text" value='loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Alexchad-source/Alexchad-Hub/refs/heads/main/loader.lua"))()' id="executorLoadstring" readonly>
+            <button class="copy-btn" onclick="copyExecutorLoadstring()">Copy</button>
+        </div>
     </div>
 
     <div id="developers" class="tab" style="display:none;">
         <h2>Developers</h2>
-        <p>AlexChad — Owner & Developer.</p>
+        <p>👤 AlexChad — Owner & Developer.</p>
     </div>
 
 </div>
@@ -117,7 +154,13 @@
     function copyLoadstring() {
         const copyText = document.getElementById("loadstringBox");
         navigator.clipboard.writeText(copyText.value);
-        alert("Loadstring copied!");
+        alert("Home Loadstring copied!");
+    }
+
+    function copyExecutorLoadstring() {
+        const copyText = document.getElementById("executorLoadstring");
+        navigator.clipboard.writeText(copyText.value);
+        alert("Executor Loadstring copied!");
     }
 </script>
 
