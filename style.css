@@ -1,1 +1,178 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0f0f0f;
+    color: #f0f0f0;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    background: #1c1c1c;
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: #00d4ff;
+}
+
+/* Navigation */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: #00d4ff;
+    color: #000;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* Tabs */
+.tab {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.tab.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Section Titles */
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #00d4ff;
+}
+
+h3, h4 {
+    color: #ff9f1c;
+    margin-top: 15px;
+}
+
+/* Lists */
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    padding: 5px 0;
+}
+
+/* Discord Button */
+.discord-btn {
+    background: #5865F2;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(88, 101, 242, 0.5);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.discord-btn:hover {
+    background: #4752c4;
+    transform: scale(1.05);
+}
+
+/* Loadstring Box */
+.loadstring-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.loadstring-container input {
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: #1e1e1e;
+    color: #00ff99;
+    font-family: monospace;
+    width: 100%;
+}
+
+/* Copy Button */
+.copy-btn {
+    background: #00ff99;
+    color: #000;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: #00cc7a;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    background: #1c1c1c;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    .discord-btn, .copy-btn {
+        width: 100%;
+    }
+}
 
