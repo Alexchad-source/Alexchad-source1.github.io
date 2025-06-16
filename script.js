@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
+            // Toggle active class on nav links
+            links.forEach(l => l.classList.remove("active"));
+            link.classList.add("active");
+
             // Optional: Scroll to top when switching tab
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
@@ -55,4 +59,3 @@ function showCopyFeedback() {
         copyButton.style.background = "#00ff99";
     }, 1500);
 }
-
