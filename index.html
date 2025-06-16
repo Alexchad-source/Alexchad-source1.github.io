@@ -1,99 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexchad Source Hub</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Alexchad Source Hub</title>
+
+<style>
+  /* === CSS === */
+
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #ddd;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  header {
+    background: #0d0d0d;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #00ff99;
+  }
+
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #00ff99;
+  }
+
+  /* Navigation menu */
+  nav {
+    background: #1a1a1a;
+    border-bottom: 2px solid #00ff99;
+  }
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .nav-links a {
+    display: inline-block;
+    padding: 15px 25px;
+    color: #aaa;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .nav-links a.active,
+  .nav-links a:hover {
+    color: #00ff99;
+    border-bottom: 3px solid #00ff99;
+  }
+
+  /* Container for main content */
+  main {
+    max-width: 960px;
+    margin: 25px auto;
+    padding: 0 20px 40px;
+  }
+
+  /* Tab content */
+  .tab {
+    display: none;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  .tab.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  /* Discord button */
+  .discord-btn {
+    background: #5865f2;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  .discord-btn:hover {
+    background: #4752c4;
+  }
+
+  /* Loadstring input + copy button */
+  .loadstring-container {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  #loadstringInput {
+    flex-grow: 1;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 2px solid #00ff99;
+    background: #222;
+    color: #eee;
+    outline: none;
+  }
+  .copy-btn {
+    background: #00ff99;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    color: #121212;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  .copy-btn:hover {
+    background: #33ffbb;
+  }
+
+  /* Content styling for tabs */
+  h2 {
+    color: #00ff99;
+    margin-bottom: 15px;
+  }
+  p, ul {
+    line-height: 1.5;
+    font-size: 1rem;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  li {
+    margin-bottom: 6px;
+  }
+  .green-dot {
+    color: #00ff99;
+    font-weight: bold;
+    margin-left: 6px;
+  }
+</style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="header-container">
-            <h1>Alexchad Source Hub</h1>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#" onclick="showTab('home')" aria-label="Home Tab">Home</a></li>
-                    <li><a href="#" onclick="showTab('games')" aria-label="Games Tab">Games</a></li>
-                    <li><a href="#" onclick="showTab('executors')" aria-label="Executors Tab">Executors</a></li>
-                    <li><a href="#" onclick="showTab('developers')" aria-label="Developers Tab">Developers</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Main Content Area -->
-    <main>
-        <!-- Home Tab -->
-        <section id="home" class="tab active" aria-labelledby="home-tab">
-            <h2>Welcome to Alexchad Source Hub!</h2>
-            <p>Your one-stop hub for scripts, executors, and updates.</p>
-            
-            <!-- Discord Invite Button -->
-            <button class="discord-btn" onclick="window.open('https://discord.gg/YOURINVITELINK', '_blank')" aria-label="Join Discord Server">
-                Join our Discord
-            </button>
+<header>
+  <h1>Alexchad Source Hub</h1>
+  <button class="discord-btn" onclick="openDiscord()">Join Discord</button>
+</header>
 
-            <!-- Loadstring Copy Box -->
-            <div class="loadstring-container">
-                <label for="loadstringBox">Universal Loadstring:</label>
-                <input type="text" id="loadstringBox" 
-                    value='loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Alexchad-source/Alexchad-Hub/refs/heads/main/loader.lua"))()' 
-                    readonly>
-                <button class="copy-btn" onclick="copyLoadstring()" aria-label="Copy Loadstring">Copy</button>
-            </div>
-        </section>
+<nav>
+  <ul class="nav-links">
+    <li><a href="#" class="active" data-tab="home">Home</a></li>
+    <li><a href="#" data-tab="games">Games</a></li>
+    <li><a href="#" data-tab="executors">Executors</a></li>
+    <li><a href="#" data-tab="developers">Developers</a></li>
+  </ul>
+</nav>
 
-        <!-- Games Tab -->
-        <section id="games" class="tab" aria-labelledby="games-tab">
-            <h2>Supported Games</h2>
-            <ul class="games-list">
-                <li>🟢 Build an Island</li>
-                <li>🟢 Untitled Drilling Game</li>
-                <li>🟢 Luckyblock Battlegrounds</li>
-                <li>🟢 Be Crushed by a Speeding Wall (Partial Features)</li>
-                <li>🟢 Smoothie Factory Tycoon</li>
-            </ul>
-        </section>
+<main>
+  <!-- Home Tab -->
+  <section id="home" class="tab active">
+    <h2>Welcome to Alexchad Source Hub!</h2>
+    <p>Paste your loadstring below and use the button to quickly copy it.</p>
+    <div class="loadstring-container">
+      <input id="loadstringInput" type="text" placeholder='Paste loadstring here...' />
+      <button class="copy-btn" onclick="copyLoadstring()">Copy</button>
+    </div>
+  </section>
 
-        <!-- Executors Tab -->
-        <section id="executors" class="tab" aria-labelledby="executors-tab">
-            <h2>Executors</h2>
-            <article>
-                <h3>🖥️ PC (Windows)</h3>
-                
-                <h4>🔒 Best Paid Executors</h4>
-                <ul class="executors-list">
-                    <li>✅ Synapse X (Legacy)</li>
-                    <li>✅ Zenith</li>
-                    <li>✅ AWP.GG</li>
-                </ul>
+  <!-- Games Tab -->
+  <section id="games" class="tab">
+    <h2>Current Games</h2>
+    <ul>
+      <li>Build an Island: <span class="green-dot">🟢</span></li>
+      <li>Untitled Drilling Game: <span class="green-dot">🟢</span></li>
+      <li>Luckyblock Battlegrounds: <span class="green-dot">🟢</span></li>
+      <li>Be crushed by a speeding wall: <span class="green-dot">🟢</span> (Useable but not all features implemented)</li>
+      <li>Smoothie Factory Tycoon: <span class="green-dot">🟢</span></li>
+    </ul>
+  </section>
 
-                <h4>💸 Best Free Executors</h4>
-                <ul class="executors-list">
-                    <li>✅ Volcano</li>
-                    <li>✅ Swift</li>
-                    <li>✅ Velocity</li>
-                    <li>✅ Visual</li>
-                    <li>✅ Solara</li>
-                    <li>✅ Xeno<li>
-                </ul>
-            </article>
-        </section>
+  <!-- Executors Tab -->
+  <section id="executors" class="tab">
+    <h2>Roblox Executors</h2>
+    <h3>🖥️ PC (Windows)</h3>
+    <h4>🔒 Best Paid</h4>
+    <ul>
+      <li>✅ Synapse X (Legacy)</li>
+      <li>✅ Zenith</li>
+      <li>✅ AWP.GG</li>
+    </ul>
+    <h4>💸 Best Free</h4>
+    <ul>
+      <li>✅ Volcano</li>
+      <li>✅ Swift</li>
+      <li>✅ Velocity</li>
+      <li>✅ Xeno</li>
+      <li>✅ Visual</li>
+    </ul>
+    <p><strong>Loadstring Example:</strong><br><code>loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Alexchad-source/Alexchad-Hub/refs/heads/main/loader.lua"))()</code></p>
+  </section>
 
-        <!-- Developers Tab -->
-        <section id="developers" class="tab" aria-labelledby="developers-tab">
-            <h2>Developer</h2>
-            <p>👤 Alexchad — Creator and Maintainer of this Hub</p>
-        </section>
-    </main>
+  <!-- Developers Tab -->
+  <section id="developers" class="tab">
+    <h2>Developers</h2>
+    <ul>
+      <li>Alexchad (Me!)</li>
+    </ul>
+  </section>
+</main>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2025 Alexchad Source Hub. All rights reserved.</p>
-    </footer>
+<script>
+  // Tab Switching Logic
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".tab");
+    const links = document.querySelectorAll(".nav-links a");
 
-    <!-- JavaScript for Tabs & Copy -->
-    <script src="script.js"></script>
+    links.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = link.getAttribute("data-tab");
+
+        tabs.forEach(tab => {
+          if (tab.id === target) {
+            tab.classList.add("active");
+          } else {
+            tab.classList.remove("active");
+          }
+        });
+
+        // Toggle active class on nav links
+        links.forEach(l => l.classList.remove("active"));
+        link.classList.add("active");
+
+        // Scroll to top when switching tab
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  });
+
+  // Discord Button Function
+  function openDiscord() {
+    window.open("https://discord.gg/YOUR_INVITE_CODE", "_blank");
+  }
+
+  // Copy Loadstring Logic
+  function copyLoadstring() {
+    const loadstringInput = document.getElementById("loadstringInput");
+    loadstringInput.select();
+    loadstringInput.setSelectionRange(0, 99999); // For mobile support
+
+    navigator.clipboard.writeText(loadstringInput.value)
+      .then(() => {
+        showCopyFeedback();
+      })
+      .catch(err => {
+        console.error('Copy failed:', err);
+      });
+  }
+
+  // Feedback Animation after Copy
+  function showCopyFeedback() {
+    const copyButton = document.querySelector(".copy-btn");
+    const originalText = copyButton.textContent;
+
+    copyButton.textContent = "Copied!";
+    copyButton.style.background = "#33ffbb";
+
+    setTimeout(() => {
+      copyButton.textContent = originalText;
+      copyButton.style.background = "#00ff99";
+    }, 1500);
+  }
+</script>
+
 </body>
 </html>
