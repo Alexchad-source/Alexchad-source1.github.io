@@ -2,163 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AlexChad Hub</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-        nav {
-            background-color: #1f1f1f;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            color: #ddd;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            color: #33aaff;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            text-align: center;
-        }
-        .button {
-            background-color: #5865F2;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .box {
-            background-color: #1f1f1f;
-            border: 1px solid #333;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-        button.copy-btn {
-            padding: 10px 15px;
-            margin-left: 10px;
-            cursor: pointer;
-            border: none;
-            background-color: #33aaff;
-            color: #fff;
-            border-radius: 5px;
-        }
-        .list {
-            text-align: left;
-            margin-top: 20px;
-        }
-        h2, h3 {
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexchad Source Hub</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<nav>
-    <a href="#home" onclick="showTab('home')">Home</a>
-    <a href="#games" onclick="showTab('games')">Games</a>
-    <a href="#executors" onclick="showTab('executors')">Executors</a>
-    <a href="#developers" onclick="showTab('developers')">Developers</a>
-</nav>
-
-<div class="container">
-
-    <div id="home" class="tab">
-        <h1>Welcome to AlexChad Hub</h1>
-        <p>Your Roblox Trusted and keyless Hub.</p>
-        <a href="https://discord.gg/mGTdaNQHVy" target="_blank" class="button">Join our Discord</a>
-        
-        <div class="box">
-            <h3>Loadstring</h3>
-            <input type="text" value='loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Alexchad-source/Alexchad-Hub/refs/heads/main/loader.lua"))()' id="loadstringBox" readonly>
-            <button class="copy-btn" onclick="copyLoadstring()">Copy</button>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <h1>Alexchad Source Hub</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showTab('home')" aria-label="Home Tab">Home</a></li>
+                    <li><a href="#" onclick="showTab('games')" aria-label="Games Tab">Games</a></li>
+                    <li><a href="#" onclick="showTab('executors')" aria-label="Executors Tab">Executors</a></li>
+                    <li><a href="#" onclick="showTab('developers')" aria-label="Developers Tab">Developers</a></li>
+                </ul>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <div id="games" class="tab" style="display:none;">
-        <h2>Supported Games</h2>
-        <div class="list">
-            <ul>
-                <li>✅ Build an Island</li>
-                <li>✅ Untitled Drilling Game</li>
-                <li>✅ Luckyblock Battlegrounds</li>
-                <li>⚠️ Be Crushed by a Speeding Wall (Partially supported)</li>
-                <li>✅ Smoothie Factory Tycoon</li>
+    <!-- Main Content Area -->
+    <main>
+        <!-- Home Tab -->
+        <section id="home" class="tab active" aria-labelledby="home-tab">
+            <h2>Welcome to Alexchad Source Hub!</h2>
+            <p>Your one-stop hub for scripts, executors, and updates.</p>
+            
+            <!-- Discord Invite Button -->
+            <button class="discord-btn" onclick="window.open('https://discord.gg/YOURINVITELINK', '_blank')" aria-label="Join Discord Server">
+                Join our Discord
+            </button>
+
+            <!-- Loadstring Copy Box -->
+            <div class="loadstring-container">
+                <label for="loadstringBox">Universal Loadstring:</label>
+                <input type="text" id="loadstringBox" 
+                    value='loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Alexchad-source/Alexchad-Hub/refs/heads/main/loader.lua"))()' 
+                    readonly>
+                <button class="copy-btn" onclick="copyLoadstring()" aria-label="Copy Loadstring">Copy</button>
+            </div>
+        </section>
+
+        <!-- Games Tab -->
+        <section id="games" class="tab" aria-labelledby="games-tab">
+            <h2>Supported Games</h2>
+            <ul class="games-list">
+                <li>🟢 Build an Island</li>
+                <li>🟢 Untitled Drilling Game</li>
+                <li>🟢 Luckyblock Battlegrounds</li>
+                <li>🟢 Be Crushed by a Speeding Wall (Partial Features)</li>
+                <li>🟢 Smoothie Factory Tycoon</li>
             </ul>
-        </div>
-    </div>
+        </section>
 
-    <div id="executors" class="tab" style="display:none;">
-        <h2>Recommended Executors</h2>
-        <div class="list">
-            <h3>🖥️ PC (Windows)</h3>
-            <h4>🔒 Best Paid</h4>
-            <ul>
-                <li>✅ Synapse X (Legacy)</li>
-                <li>✅ Zenith</li>
-                <li>✅ AWP.GG</li>
-            </ul>
-            <h4>💸 Best Free</h4>
-            <ul>
-                <li>✅ Volcano</li>
-                <li>✅ Swift</li>
-                <li>✅ Velocity</li>
-                <li>✅ Xeno</li>
-                <li>✅ Visual</li>
-            </ul>
-        </div>
-        
-    </div>
+        <!-- Executors Tab -->
+        <section id="executors" class="tab" aria-labelledby="executors-tab">
+            <h2>Executors</h2>
+            <article>
+                <h3>🖥️ PC (Windows)</h3>
+                
+                <h4>🔒 Best Paid Executors</h4>
+                <ul class="executors-list">
+                    <li>✅ Synapse X (Legacy)</li>
+                    <li>✅ Zenith</li>
+                    <li>✅ AWP.GG</li>
+                </ul>
 
-    <div id="developers" class="tab" style="display:none;">
-        <h2>Developers</h2>
-        <p>👤 AlexChad — Owner & Developer.</p>
-    </div>
+                <h4>💸 Best Free Executors</h4>
+                <ul class="executors-list">
+                    <li>✅ Volcano</li>
+                    <li>✅ Swift</li>
+                    <li>✅ Velocity</li>
+                    <li>✅ Visual</li>
+                    <li>✅ Solara</li>
+                    <li>✅ Xeno<li>
+                </ul>
+            </article>
+        </section>
 
-</div>
+        <!-- Developers Tab -->
+        <section id="developers" class="tab" aria-labelledby="developers-tab">
+            <h2>Developer</h2>
+            <p>👤 Alexchad — Creator and Maintainer of this Hub</p>
+        </section>
+    </main>
 
-<script>
-    function showTab(tabName) {
-        const tabs = document.querySelectorAll('.tab');
-        tabs.forEach(tab => tab.style.display = 'none');
-        document.getElementById(tabName).style.display = 'block';
-    }
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Alexchad Source Hub. All rights reserved.</p>
+    </footer>
 
-    function copyLoadstring() {
-        const copyText = document.getElementById("loadstringBox");
-        navigator.clipboard.writeText(copyText.value);
-        alert("Home Loadstring copied!");
-    }
-
-    function copyExecutorLoadstring() {
-        const copyText = document.getElementById("executorLoadstring");
-        navigator.clipboard.writeText(copyText.value);
-        alert("Executor Loadstring copied!");
-    }
-</script>
-
+    <!-- JavaScript for Tabs & Copy -->
+    <script src="script.js"></script>
 </body>
 </html>
