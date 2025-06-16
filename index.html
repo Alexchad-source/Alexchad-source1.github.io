@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AlexChad Source Hub</title>
+    <title>AlexChad Hub</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -87,13 +87,13 @@
 <div class="container">
 
     <div id="home" class="tab">
-        <h1>Welcome to AlexChad Source Hub</h1>
-        <p>Your Roblox scripts & tools in one place.</p>
-        <a href="https://discord.gg/yourdiscord" target="_blank" class="button">Join our Discord</a>
+        <h1>Welcome to AlexChad Hub</h1>
+        <p>Your Roblox Trusted and keyless Hub.</p>
+        <a href="https://discord.gg/mGTdaNQHVy" target="_blank" class="button">Join our Discord</a>
         
         <div class="box">
             <h3>Loadstring</h3>
-            <input type="text" value='loadstring(game:HttpGet("https://alexchad-source.github.io/loader.lua"))()' id="loadstringBox" readonly>
+            <input type="text" value='loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Alexchad-source/Alexchad-Hub/refs/heads/main/loader.lua"))()' id="loadstringBox" readonly>
             <button class="copy-btn" onclick="copyLoadstring()">Copy</button>
         </div>
     </div>
@@ -130,11 +130,7 @@
                 <li>✅ Visual</li>
             </ul>
         </div>
-        <div class="box">
-            <h3>Executor Loadstring</h3>
-            <input type="text" value='loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Alexchad-source/Alexchad-Hub/refs/heads/main/loader.lua"))()' id="executorLoadstring" readonly>
-            <button class="copy-btn" onclick="copyExecutorLoadstring()">Copy</button>
-        </div>
+        
     </div>
 
     <div id="developers" class="tab" style="display:none;">
