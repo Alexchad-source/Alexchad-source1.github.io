@@ -6,39 +6,66 @@
     <title>Alexchad Hub</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* Custom CSS for hacker style */
+        /* Modern, clean styling */
         body {
-            font-family: 'Space Mono', monospace; /* Hacker-style font */
-            background-color: #0a0a0a; /* Very dark background */
-            color: #00ff00; /* Neon green text */
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-x: hidden;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 1rem;
         }
-        .text-neon-green {
-            color: #00ff00;
+        .gradient-text {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        .text-neon-blue {
-            color: #00ffff;
+        .card {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        .text-neon-purple {
-            color: #ff00ff;
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            z-index: 10;
         }
-        .border-neon-green {
-            border-color: #00ff00;
+        .card-wrapper:hover .card:not(:hover) {
+            transform: scale(0.95);
+            opacity: 0.8;
+            filter: blur(1px);
         }
-        .bg-dark-code {
-            background-color: #1a1a1a;
+        .nav-link {
+            position: relative;
         }
-        .shadow-neon {
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* Subtle neon glow */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
         .nav-link {
             transition: color 0.3s ease, transform 0.3s ease;
@@ -81,47 +108,55 @@
         }
     </style>
 </head>
-<body class="font-mono text-neon-green">
+<body>
     <div class="container min-h-screen flex flex-col">
         <!-- Header Section -->
-        <header class="py-6 border-b-2 border-neon-green rounded-b-lg mb-8 shadow-neon">
-            <h1 class="text-4xl md:text-5xl font-bold text-center text-neon-blue uppercase tracking-wider">
-                <span class="text-neon-green">&lt;</span>Alexchad Hub<span class="text-neon-green">/&gt;</span>
-            </h1>
-            <nav class="mt-6">
-                <ul class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8 text-xl">
-                    <li><a href="#home" class="nav-link text-neon-green hover:text-neon-blue" onclick="showSection('home')">Home</a></li>
-                    <li><a href="#games" class="nav-link text-neon-green hover:text-neon-blue" onclick="showSection('games')">Games</a></li>
-                    <li><a href="#credits" class="nav-link text-neon-green hover:text-neon-blue" onclick="showSection('credits')">Credits</a></li>
+        <header class="py-8 mb-12">
+            <div class="flex flex-col items-center">
+                <h1 class="text-5xl md:text-6xl font-bold text-center gradient-text" data-aos="fade-down">
+                    Alexchad Hub
+                </h1>
+                <button id="darkModeToggle" class="mt-4 px-4 py-2 rounded-full bg-slate-800 text-white dark:bg-slate-100 dark:text-slate-900">
+                    Toggle Dark Mode
+                </button>
+            </div>
+            <nav class="mt-10">
+                <ul class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-12 text-xl">
+                    <li><a href="#home" class="nav-link text-slate-600 hover:text-slate-900 px-4 py-2" onclick="showSection('home')">Home</a></li>
+                    <li><a href="#games" class="nav-link text-slate-600 hover:text-slate-900 px-4 py-2" onclick="showSection('games')">Games</a></li>
+                    <li><a href="#credits" class="nav-link text-slate-600 hover:text-slate-900 px-4 py-2" onclick="showSection('credits')">Credits</a></li>
                 </ul>
             </nav>
         </header>
 
         <!-- Main Content Area -->
-        <main class="flex-grow p-4 md:p-8 bg-dark-code rounded-lg border-2 border-neon-green shadow-neon">
+        <main class="flex-grow p-4 md:p-8 bg-white dark:bg-gray-900 rounded-lg border-2 border-neon-green shadow-neon transition-colors duration-300">
 
             <!-- Home Section -->
-            <section id="home" class="section active">
-                <h2 class="text-3xl font-bold text-neon-purple mb-6 text-center md:text-left">Welcome to Alexchad Hub <span class="text-neon-green">[ONLINE]</span></h2>
-                <div class="bg-gray-900 p-6 rounded-lg border border-neon-green shadow-inner shadow-neon mb-8">
-                    <p class="text-lg text-gray-300 mb-4">
-                        Greetings, user. You have successfully accessed the Alexchad Hub.
-                        This platform provides access to a curated selection of digital experiences.
-                        Proceed with caution and precision.
+            <section id="home" class="section active" data-aos="fade-in">
+                <div class="max-w-4xl mx-auto text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
+                        Welcome to <span class="gradient-text">Alexchad Hub</span>
+                    </h2>
+                    <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+                        Your gateway to premium gaming experiences with smooth performance and exclusive features. 
+                        Access our curated collection of supported games with just a click.
                     </p>
-                    <h3 class="text-2xl font-semibold text-neon-blue mb-3">Loadstring Access:</h3>
-                    <div class="relative">
-                        <textarea id="loadstringCode" readonly class="w-full h-32 p-4 bg-gray-800 text-neon-green border border-neon-green rounded-md resize-none code-block font-mono text-sm"
-                            >--[[ Alexchad Hub Loadstring ]]--
+                    <div class="bg-white rounded-2xl shadow-xl p-8 mb-10" data-aos="fade-up">
+                        <h3 class="text-2xl font-semibold text-slate-800 mb-6">Quick Start</h3>
+                        <div class="relative">
+                            <div class="flex items-center">
+                                <textarea id="loadstringCode" readonly 
+                                    class="w-full h-32 p-4 bg-slate-50 text-slate-800 border border-slate-200 rounded-xl resize-none font-mono text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">-- Alexchad Hub Loadstring
 loadstring(game:HttpGet("https://alexchadhub.com/main.lua", true))()
--- This is a placeholder loadstring.
--- In a real scenario, this would execute code from a server.
-                        </textarea>
-                        <button onclick="copyLoadstring()" class="absolute top-2 right-2 px-3 py-1 bg-neon-green text-black rounded-md text-sm hover:bg-neon-blue hover:text-white transition-colors duration-300">
-                            Copy
-                        </button>
+                                </textarea>
+                            </div>
+                            <button onclick="copyLoadstring()" 
+                                class="mt-4 px-6 py-2 btn-primary text-white rounded-lg transition-all duration-300 hover:shadow-md">
+                                Copy to Clipboard
+                            </button>
+                        </div>
                     </div>
-                    <p class="text-xs text-gray-500 mt-2">Click to copy the loadstring to your clipboard.</p>
                 </div>
             </section>
 
@@ -132,17 +167,21 @@ loadstring(game:HttpGet("https://alexchadhub.com/main.lua", true))()
                 <!-- Removed "Load Game by Link" section as requested -->
 
                 <h3 class="text-2xl font-bold text-neon-purple mb-4 text-center md:text-left">Popular Integrations:</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-wrapper grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" data-aos="fade-up" data-aos-delay="100">
                     <!-- START OF REPEATABLE GAME CARD STRUCTURE -->
-                    <!-- To add a new game, copy this entire div block and paste it below, then modify its content. -->
-                    <div class="p-6 bg-gray-800 rounded-lg border border-neon-green shadow-lg hover:shadow-neon transition-shadow duration-300">
-                        <!-- Image for the game card. Replace src with your game's thumbnail URL. -->
-                        <img src="https://tr.rbxcdn.com/180DAY-8416ccb670b3523971f66e894153b263/768/432/Image/Webp/noFilter" alt="The Rake Remastered Thumbnail" class="w-full h-32 object-cover rounded-md border border-neon-green mb-4">
-                        <!-- Game Title -->
-                        <h3 class="text-2xl font-semibold text-neon-blue mb-2">The Rake Remastered</h3>
-                        <!-- Play Now Button - This is a link that opens in a new tab -->
-                        <a href="https://www.roblox.com/games/12345/The-Rake-Remastered" target="_blank" class="block w-full text-center mt-4 px-4 py-3 bg-neon-green text-black font-bold rounded-md hover:bg-neon-blue hover:text-white transition-colors duration-300 shadow-lg hover:shadow-neon-blue-lg">
-                            PLAY NOW
+                    <div class="card p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform"
+                        data-aos="zoom-in" data-aos-delay="100">
+                        <div class="relative overflow-hidden rounded-xl mb-6 h-48">
+                            <img src="https://tr.rbxcdn.com/180DAY-8416ccb670b3523971f66e894153b263/768/432/Image/Webp/noFilter" 
+                                 alt="The Rake Remastered Thumbnail" 
+                                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">The Rake Remastered</h3>
+                        <a href="https://www.roblox.com/games/12345/The-Rake-Remastered" 
+                           target="_blank" 
+                           class="block w-full text-center mt-4 px-6 py-3 btn-primary text-white font-bold rounded-xl transition-all duration-300 hover:shadow-lg">
+                            Play Now
                         </a>
                     </div>
                     <div class="p-6 bg-gray-800 rounded-lg border border-neon-green shadow-lg hover:shadow-neon transition-shadow duration-300">
@@ -233,33 +272,92 @@ loadstring(game:HttpGet("https://alexchadhub.com/main.lua", true))()
     </div>
 
     <script>
-        // JavaScript for section switching
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('active');
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: false
             });
-            // Show the requested section
-            document.getElementById(sectionId).classList.add('active');
+            showSection('home');
+            
+            // Add ripple effect to buttons
+            document.querySelectorAll('.btn-primary').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const ripple = document.createElement('span');
+                    ripple.className = 'ripple';
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+
+                    this.appendChild(ripple);
+
+                    setTimeout(() => ripple.remove(), 1000);
+                });
+            });
+        });
+
+        function showSection(sectionId) {
+            // Smooth transition between sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.opacity = 0;
+                setTimeout(() => {
+                    section.classList.remove('active');
+                }, 300);
+            });
+            
+            setTimeout(() => {
+                const activeSection = document.getElementById(sectionId);
+                activeSection.classList.add('active');
+                setTimeout(() => {
+                    activeSection.style.opacity = 1;
+                }, 10);
+                
+                // Initialize animations for newly shown section
+                setTimeout(() => {
+                    AOS.refresh();
+                }, 350);
+            }, 300);
         }
 
-        // Function to copy loadstring to clipboard
         function copyLoadstring() {
             const loadstringCode = document.getElementById('loadstringCode');
-            loadstringCode.select();
-            document.execCommand('copy');
-            // Provide visual feedback (e.g., change button text temporarily)
-            const copyButton = loadstringCode.nextElementSibling; // Get the button next to the textarea
-            const originalText = copyButton.textContent;
-            copyButton.textContent = 'Copied!';
-            setTimeout(() => {
-                copyButton.textContent = originalText;
-            }, 1500);
+            const button = document.querySelector('#loadstringCode').nextElementSibling;
+            
+            navigator.clipboard.writeText(loadstringCode.value).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.replace('bg-gradient-to-r', 'bg-green-500');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.replace('bg-green-500', 'bg-gradient-to-r');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
         }
 
-        // Initialize the website by showing the home section on load
-        document.addEventListener('DOMContentLoaded', () => {
-            showSection('home');
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Check for saved preference or system preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+            document.body.classList.add('dark');
+            darkModeToggle.textContent = 'Toggle Light Mode';
+        }
+        
+        // Toggle dark/light mode
+        darkModeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark');
+            const theme = document.body.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+            darkModeToggle.textContent = theme === 'dark' ? 'Toggle Light Mode' : 'Toggle Dark Mode';
         });
     </script>
 </body>
